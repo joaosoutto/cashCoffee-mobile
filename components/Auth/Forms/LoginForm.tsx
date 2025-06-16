@@ -3,17 +3,21 @@ import { FlexContainer } from "@/components/styled/Container";
 import { Input } from "@/components/styled/Input";
 import { Text } from "@/components/styled/Text";
 import { Colors } from "@/constants/Colors";
-import { Link, router } from "expo-router";
-import { useState } from "react";
+import useLoginForm from "@/hooks/auth/useLoginForm";
+import { router } from "expo-router";
 import { TouchableOpacity } from "react-native";
 
 const LoginForm = () => {
-  const [loginState, setLoginState] = useState({
-    email: "",
-    password: "",
-  });
+  const {
+    handleChange,
+    handleBlur,
+    touched,
+    isValid,
+    values,
+    errors,
+    handleSubmit,
+  } = useLoginForm();
 
-  console.log(loginState);
   return (
     <FlexContainer
       direction="column"
@@ -24,32 +28,35 @@ const LoginForm = () => {
       <Input
         placeholder="Email"
         keyboardType="email-address"
-        value={loginState.email}
-        onChangeText={(text: string) =>
-          setLoginState({ ...loginState, email: text })
-        }
+        value={values.email}
+        onChangeText={handleChange("email")}
+        onBlur={handleBlur("email")}
       />
+      {touched.email && errors.email && (
+        <Text size={12} color={Colors.status.error}>
+          {errors.email}
+        </Text>
+      )}
 
       <Input
         secureTextEntry={true}
         placeholder="Senha"
-        value={loginState.password}
-        onChangeText={(text: string) =>
-          setLoginState({ ...loginState, password: text })
-        }
+        value={values.password}
+        onChangeText={handleChange("password")}
+        onBlur={handleBlur("password")}
       />
-      <PrimaryButton
-        disabled={loginState.email === "" || loginState.password === ""}
-        onPress={() => {
-          console.log("Entrar");
-        }}
-      >
+      {touched.password && errors.password && (
+        <Text size={12} color={Colors.status.error}>
+          {errors.password}
+        </Text>
+      )}
+      <PrimaryButton disabled={!isValid} onPress={() => handleSubmit()}>
         <Text size={16} color={Colors.text.onPrimary} bold>
           Entrar
         </Text>
       </PrimaryButton>
       <FlexContainer direction="row" align="center" justify="flex-end">
-        <Text size={16} color={Colors.text.primary}>
+        <Text size={16} color={Colors.secondary.base}>
           Ainda não tem uma conta? {""}
         </Text>
         <TouchableOpacity

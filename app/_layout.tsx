@@ -7,9 +7,12 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
+import Toast from "react-native-toast-message";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { Platform } from "react-native";
+import { AppProvider } from "@/contexts/AppContext";
+import ReactQueryProvider from "@/contexts/ReactQueryProvider";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -23,19 +26,26 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          statusBarStyle: Platform.OS === "ios" ? undefined : "dark",
-          contentStyle: {
-            backgroundColor: "#fff",
-          },
-        }}
-      >
-        <Stack.Screen name={"index"} options={{ headerShown: false }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <AppProvider>
+      <ReactQueryProvider queryClientOptions={{}}>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        >
+          <Stack
+            screenOptions={{
+              headerShown: false,
+              statusBarStyle: Platform.OS === "ios" ? undefined : "dark",
+              contentStyle: {
+                backgroundColor: "#fff",
+              },
+            }}
+          >
+            <Stack.Screen name={"index"} options={{ headerShown: false }} />
+          </Stack>
+          <StatusBar style="auto" />
+          <Toast />
+        </ThemeProvider>
+      </ReactQueryProvider>
+    </AppProvider>
   );
 }

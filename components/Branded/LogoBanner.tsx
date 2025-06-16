@@ -13,7 +13,7 @@ const LogoBanner = () => {
       width="100%"
       backgroundColor={Colors.secondary.base}
       style={{
-        height: "40%",
+        height: "30%",
         paddingLeft: 78,
         borderTopLeftRadius: 70,
         borderBottomRightRadius: 10,

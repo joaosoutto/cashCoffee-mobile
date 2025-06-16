@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import { ContainerProps, FlexContainerProps } from "./types";
+import { Colors } from "@/constants/Colors";
 
 export const Container = styled.View<ContainerProps>`
   flex: 1;
@@ -7,7 +8,7 @@ export const Container = styled.View<ContainerProps>`
   padding-bottom: ${(props) => props.paddingBottom || 20}px;
   padding-left: ${(props) => props.paddingLeft || 24}px;
   padding-right: ${(props) => props.paddingRight || 24}px;
-  background-color: #fff;
+  background-color: ${Colors.background.dark};
   display: flex;
   flex-direction: column;
   align-items: center;

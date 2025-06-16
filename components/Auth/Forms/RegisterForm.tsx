@@ -3,16 +3,20 @@ import { FlexContainer } from "@/components/styled/Container";
 import { Input } from "@/components/styled/Input";
 import { Text } from "@/components/styled/Text";
 import { Colors } from "@/constants/Colors";
-import { Link, router } from "expo-router";
-import { useState } from "react";
+import useRegisterForm from "@/hooks/auth/useRegisterForm";
+import { router } from "expo-router";
 import { TouchableOpacity } from "react-native";
 
 const LoginForm = () => {
-  const [registerState, setRegisterState] = useState({
-    email: "",
-    password: "",
-    name: "",
-  });
+  const {
+    handleChange,
+    handleBlur,
+    touched,
+    isValid,
+    values,
+    errors,
+    handleSubmit,
+  } = useRegisterForm();
 
   return (
     <FlexContainer
@@ -24,44 +28,47 @@ const LoginForm = () => {
       <Input
         placeholder="Nome"
         keyboardType="default"
-        value={registerState.name}
-        onChangeText={(text: string) =>
-          setRegisterState({ ...registerState, name: text })
-        }
+        value={values.name}
+        onChangeText={handleChange("name")}
+        onBlur={handleBlur("name")}
       />
+      {touched.name && errors.name && (
+        <Text size={14} color={Colors.status.error}>
+          {errors.name}
+        </Text>
+      )}
       <Input
         placeholder="Email"
         keyboardType="email-address"
-        value={registerState.email}
-        onChangeText={(text: string) =>
-          setRegisterState({ ...registerState, email: text })
-        }
+        value={values.email}
+        onChangeText={handleChange("email")}
+        onBlur={handleBlur("email")}
       />
+      {touched.email && errors.email && (
+        <Text size={14} color={Colors.status.error}>
+          {errors.email}
+        </Text>
+      )}
 
       <Input
         secureTextEntry={true}
         placeholder="Senha"
-        value={registerState.password}
-        onChangeText={(text: string) =>
-          setRegisterState({ ...registerState, password: text })
-        }
+        value={values.password}
+        onChangeText={handleChange("password")}
+        onBlur={handleBlur("password")}
       />
-      <PrimaryButton
-        disabled={
-          registerState.email === "" ||
-          registerState.password === "" ||
-          registerState.name === ""
-        }
-        onPress={() => {
-          console.log("Cadastrar");
-        }}
-      >
+      {touched.password && errors.password && (
+        <Text size={14} color={Colors.status.error}>
+          {errors.password}
+        </Text>
+      )}
+      <PrimaryButton disabled={!isValid} onPress={() => handleSubmit()}>
         <Text size={16} color={Colors.text.onPrimary} bold>
           Cadastrar
         </Text>
       </PrimaryButton>
       <FlexContainer direction="row" align="center" justify="flex-end">
-        <Text size={16} color={Colors.text.primary}>
+        <Text size={16} color={Colors.secondary.base}>
           Já tem uma conta? {""}
         </Text>
         <TouchableOpacity

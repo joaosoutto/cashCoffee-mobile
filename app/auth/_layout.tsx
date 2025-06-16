@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/Colors";
 import { Stack } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -10,7 +11,7 @@ export default function AuthLayout() {
           headerShown: false,
           contentStyle: {
             paddingTop: insets.top,
-            backgroundColor: "#fff",
+            backgroundColor: Colors.background.dark,
           },
         }}
       >
