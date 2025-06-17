@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
-import { ContainerProps, FlexContainerProps } from "./types";
 import { Colors } from "@/constants/Colors";
+import { ContainerProps, FlexContainerProps } from "./types";
 
 export const Container = styled.View<ContainerProps>`
   flex: 1;
@@ -13,6 +13,20 @@ export const Container = styled.View<ContainerProps>`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  gap: ${(props) => props.gap || 42};
+`;
+
+export const LoggedInContainer = styled.View<ContainerProps>`
+  flex: 1;
+  padding-top: ${(props) => props.paddingTop || 48}px;
+  padding-bottom: ${(props) => props.paddingBottom || 64}px;
+  padding-left: ${(props) => props.paddingLeft || 24}px;
+  padding-right: ${(props) => props.paddingRight || 24}px;
+  background-color: ${Colors.background.medium};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   gap: ${(props) => props.gap || 42};
 `;
 

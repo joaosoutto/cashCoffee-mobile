@@ -1,6 +1,6 @@
-import { Container } from "../styled/Container";
+import { Container } from "../ui/Container";
 import LogoBanner from "../Branded/LogoBanner";
-import { Text } from "../styled/Text";
+import { Text } from "../ui/Text";
 import { KeyboardAvoidingView, View } from "react-native";
 import { Colors } from "@/constants/Colors";
 import RegisterForm from "./Forms/RegisterForm";

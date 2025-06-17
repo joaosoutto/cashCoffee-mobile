@@ -6,6 +6,7 @@ interface TextProps {
   size?: number;
   color?: string;
   family?: string;
+  align?: "left" | "center" | "right";
 }
 
 export const Text = styled(RNText)<TextProps>`
@@ -13,4 +14,5 @@ export const Text = styled(RNText)<TextProps>`
   font-size: ${(props) => props.size || 16}px;
   color: ${(props) => props.color || "#1f1f1f"};
   font-weight: ${(props) => (props.bold ? "bold" : "normal")};
+  text-align: ${(props) => props.align || "left"};
 `;

@@ -1,6 +1,6 @@
 import FullLogo from "./FullLogo";
-import { FlexContainer } from "../styled/Container";
-import { Text } from "../styled/Text";
+import { FlexContainer } from "../ui/Container";
+import { Text } from "../ui/Text";
 import { Colors } from "@/constants/Colors";
 
 const LogoBanner = () => {

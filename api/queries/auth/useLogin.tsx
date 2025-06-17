@@ -30,7 +30,7 @@ export const useLogin = (values: LoginFormValues) => {
         await AsyncStorage.setItem("token", token);
 
         setUser(data);
-        router.push("/(logged)/(tabs)/dashboard");
+        router.push("/(logged)/dashboard");
       }
     },
     onError: () => {

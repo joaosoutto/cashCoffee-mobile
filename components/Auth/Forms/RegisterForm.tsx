@@ -1,7 +1,7 @@
-import { PrimaryButton } from "@/components/styled/Button";
-import { FlexContainer } from "@/components/styled/Container";
-import { Input } from "@/components/styled/Input";
-import { Text } from "@/components/styled/Text";
+import { PrimaryButton } from "@/components/ui/Button";
+import { FlexContainer } from "@/components/ui/Container";
+import { Input } from "@/components/ui/Input";
+import { Text } from "@/components/ui/Text";
 import { Colors } from "@/constants/Colors";
 import useRegisterForm from "@/hooks/auth/useRegisterForm";
 import { router } from "expo-router";
